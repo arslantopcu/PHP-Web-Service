@@ -2,7 +2,7 @@
 
 require_once ('lib/nusoap.php'); 
 
-$namespace = 'http://cservices.mikro-odeme.com.tr';
+$namespace = 'http://deneme.com.tr';
 
 //using soap_server to create server object 
 $server = new soap_server; 
