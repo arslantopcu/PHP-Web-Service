@@ -4,6 +4,8 @@ PHP-Web-Service
 Php-NuSoap web service creator
 
 
+```php
+
 $server->wsdl->addComplexType(
     'CReceiveOrderResultInput',
     'complexType',
@@ -32,4 +34,6 @@ $server->wsdl->addComplexType(
 	'Pin'		=> array('name'=>'Pin','type'=>'xsd:string' ,'minOccurs'=>0),	
     )
 );
+
+```
 
