@@ -37,3 +37,5 @@ $server->wsdl->addComplexType(
 
 ```
 
+
+http://localhost/service.php?wsdl
