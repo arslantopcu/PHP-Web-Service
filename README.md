@@ -5,7 +5,15 @@ Php-NuSoap web service oluşturma için wsdl yapmak ve aynı web servise paramet
 
 Service.php içerisinde sizde ilgili değişiklikleri yaparak kendize göre uyarlayabilirsiniz.
 
-http://localhost/service.php?wsdl ile webservisin wsdl dosyasını http://localhost/service.php ilede web servis içerisindeki fonksiyonları görebilirsiniz.
+Wsdl için
+```
+http://localhost/service.php?wsdl
+```
+
+Bilgiler için ve  web servis içerisindeki fonksiyonları görebilirsiniz.
+```
+http://localhost/service.php
+``` 
 
 Bu web servisin deneme için tek methodu var
 
