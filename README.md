@@ -1,7 +1,17 @@
 PHP-Web-Service
 ===============
 
-Php-NuSoap web service creator
+Php-NuSoap web service oluşturma için wsdl yapmak ve aynı web servise parametre gönderip ilgili işlemleri yaptırabiliriz.
+
+Service.php içerisinde sizde ilgili değişiklikleri yaparak kendize göre uyarlayabilirsiniz.
+
+
+Bu web servisin deneme için tek methodu var
+
+```
+ReceiveOrderResult
+
+```
 
 
 ```php
@@ -35,7 +45,61 @@ $server->wsdl->addComplexType(
     )
 );
 
+
+$server->wsdl->addComplexType(
+    'ArrayOfCSaleProduct',  // Name
+    'complexType',    // Type Class
+    'array',          // PHP Type
+    'sequence',               // Compositor
+    '', // Restricted Base
+    array(
+	'CSaleProduct'=>array('name'=>'CSaleProduct', 'type'=>'tns:CSaleProduct','minOccurs'=>"0", 'maxOccurs'=>"unbounded" )
+    )    
+); 
+
+
+$server->wsdl->addComplexType(
+    'CSaleProduct',  // Name
+    'complexType',    // Type Class
+    'array',          // PHP Type
+    'sequence',               // Compositor
+    '', // Restricted Base
+    array(
+	'ProductId'=>array('name'=>'ProductId', 'type'=>'xsd:int','minOccurs'=>"0", 'maxOccurs'=>"1" ),
+	'ProductCategory'=>array('name'=>'ProductCategory', 'type'=>'xsd:int','minOccurs'=>"0", 'maxOccurs'=>"1" ),
+	'ProductDescription'=>array('name'=>'ProductDescription', 'type'=>'xsd:string','minOccurs'=>"0", 'maxOccurs'=>"1" ),
+	'BasePrice'=>array('name'=>'BasePrice', 'type'=>'xsd:double','minOccurs'=>"0", 'maxOccurs'=>"1" ),
+	'BaseUnitPrice'=>array('name'=>'BaseUnitPrice', 'type'=>'xsd:double','minOccurs'=>"0", 'maxOccurs'=>"1" ),
+	'Unit'=>array('name'=>'Unit', 'type'=>'xsd:int','minOccurs'=>"0", 'maxOccurs'=>"1" ),
+    )    
+);  
+
+$server->wsdl->addComplexType( 
+   'CReceiveOrderResultOutput', 
+   'complexType', 
+   'struct', 
+   'sequence', 
+   '', 
+   array( 
+       'StatusCode' => array('name' => 'StatusCode', 'type' => 'xsd:int'),
+       'ErrorCode' => array('name' => 'ErrorCode', 'type' => 'xsd:string'),
+       'ErrorMessage' => array('name' => 'ErrorMessage', 'type' => 'xsd:string')
+    ) 
+); 
+
+$server->register( 
+   'ReceiveOrderResult', 
+   array('ReceiveOrderResult' => 'tns:CReceiveOrderResultInput'), 
+   array('ReceiveOrderResultResponse' => 'tns:CReceiveOrderResultOutput'), 
+   false,
+   false,
+   "rpc",
+   "literal",
+   "Mikro odeme return web service"
+);
+
+
 ```
 
 
-http://localhost/service.php?wsdl
+http://localhost/service.php?wsdl ile webservisin wsdl dosyasını http://localhost/service.php ilede web servis içerisindeki fonksiyonları görebilirsiniz.
