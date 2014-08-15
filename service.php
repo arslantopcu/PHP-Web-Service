@@ -88,7 +88,7 @@ $server->register(
    false,
    "rpc",
    "literal",
-   "Mikro odeme return web service"
+   "return web service"
 );
 
 
